@@ -1,3 +1,4 @@
+#VARIABLES
 zero  = [1,1,0,1,1,1,1]
 one   = [0,0,0,1,0,0,1]
 two   = [1,0,1,1,1,1,0]
@@ -8,77 +9,48 @@ six   = [1,1,1,0,1,1,1]
 seven = [1,0,0,1,0,0,1]
 eight = [1,1,1,1,1,1,1]
 nine  = [1,1,1,1,0,1,1]
-temp  = []
-
-#int f1,f2,f3,f4
-def getinput():
-      print("\nEnter 4-digit binary input: ")
-      #f1, f2, f3, f4 = int(input("\nEnter 4-digit binary input: ")).split()
-
-      f1 =  int(input("Enter number:"))
-      f2 =  int(input("Enter number:"))
-      f3 =  int(input("Enter number:"))
-      f4 =  int(input("Enter number:"))
-  
-      if(f1==0 and f2==0 and f3==0 and f4==0):
-        print("zero")
-        temp = zero
-      elif(f1==0 and f2==0 and f3==0 and f4==1):
-         print("one")
-         temp=one
-      elif(f1==0 and f2==0 and f3==1 and f4==0):
-         print("two")
-         temp=two
-      elif(f1==0 and f2==0 and f3==1 and f4==1):
-         print("three")
-         temp = three
-      elif(f1==0 and f2==1 and f3==0 and f4==0):
-         print("four")
-         temp=four
-      elif(f1==0 and f2==1 and f3==0 and f4==1):
-         print("five")
-         temp=five
-      elif(f1==0 and f2==1 and f3==1 and f4==0):
-         print("six")
-         temp=six
-      elif(f1==0 and f2==1 and f3==1 and f4==1):
-         print("seven")
-         temp=seven
-      elif(f1==1 and f2==0 and f3==0 and f4==0):
-         print("eight")
-         temp=eight
-      elif(f1==1 and f2==0 and f3==0 and f4==1):
-         print("nine")
-         temp=nine
-      else:
-        print("type next number:")
-
-      #Putting the character in a list   
-      b=[]
-      for i in range(0,7):
-         if (i==0 or i==2 or i==5):
-            if(temp[i] ==1):
-               b.append("_")
-            else:
-               b.append(" ")
+list1 = [zero,one,two,three,four,five,six,seven,eight,nine]
+temp  = [0,0,0,0,0,0,0]
+#FUNCTIO FOR DECIMAL INPUT
+def DectoBin(num,list1):
+   temp=list1[num]
+   printing(temp)
+#FUNCTION FOR BCD INPUT
+def BintoDec(binary,list1):
+   decimal = 0
+   for i in binary:
+      decimal = decimal*2 + int(i)
+   DectoBin(decimal,list1)
+#FUNCTION FOR PRINTING THE 7 SEGMENT OUTPUT 
+def printing(temp):
+   #Putting the character in a list   
+   b=[]
+   for i in range(0,7):
+      if (i==0 or i==2 or i==5):
+         if(temp[i] ==1):
+            b.append("_")
          else:
-            if(temp[i]==1):
-               b.append("|")
-            else:
                b.append(" ")
-         
-      #print(b)
-      
-      print("\nLCD output : ")
-      print(" ",b[0],sep="")
-      print(b[1],b[2],b[3],sep="")
-      print(b[4],b[5],b[6],sep="")
-
-j=1      
+      else:
+         if(temp[i]==1):
+            b.append("|")
+         else:
+            b.append(" ")      
+   print("\nLCD output : ")
+   print(" ",b[0],sep="")
+   print(b[1],b[2],b[3],sep="")
+   print(b[4],b[5],b[6],sep="")
+j=1 
+print("BCD TO 7 SEGMENGT DISPLAY DECODER ")     
 while(j==1):
-   getinput()
-   j=int(input("Enter '1' if you want to print another number :"))
-
-
-
-
+   ch=int(input("\n1.Decimal input\n2.BCD input\n Enter your choice :"))
+   if ch==1:
+      num = int(input("Enter Decimal value :"))
+      DectoBin(num,list1)
+   elif ch==2:
+      dec = input("Enter Binary Value :")
+      BintoDec(dec,list1)
+   else:
+      print("Wrong input !!!")
+   j=int(input("Enter '1' if you want to display another number :"))
+      
